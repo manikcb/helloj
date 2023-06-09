@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Check Connectivity') {
+            steps {
+                script {
+                    try {
+                        git branch: 'master', url: 'https://github.com/manikcb/helloj/blob/main/MyClass.java.git'
+                        echo "Successfully connected to the repository"
+                    } catch (Exception e) {
+                        error "Failed to connect to the repository. Error: ${e.getMessage()}"
+                    }
+                }
+            }
+        }
+        
+        // Add more stages and steps as needed
+    }
+}
